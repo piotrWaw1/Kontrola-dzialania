@@ -1,12 +1,12 @@
 # Kontrola-działania
 
-# Kompilacja
+## Kompilacja
 
 W folderze w którym znajduje się projekt wpisać polecenie: 
 
 ### `make`
 
-# Uruchomienie
+## Uruchomienie
 
 Nalerzy wpisać polecenie:
 
