@@ -12,6 +12,4 @@ Nalerzy wpisać polecenie:
 
 ### `./client` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje
 
-oraz
-
 ### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika
