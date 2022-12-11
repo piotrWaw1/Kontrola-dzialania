@@ -2,14 +2,16 @@
 
 ## Kompilacja
 
-W folderze w którym znajduje się projekt wpisać polecenie: 
+W folderze w którym znajduje się projekt wpisz polecenie: 
 
-### `make`
+### `make init` - aby zainstalowa wszystkie potrzebne elementy
+
+### `make` - aby skompilowa pliki
 
 ## Uruchomienie
 
-Nalerzy wpisać polecenie:
+Nalerzy wpisz polecenie:
 
-### `./client` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje
+### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje
 
 ### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika

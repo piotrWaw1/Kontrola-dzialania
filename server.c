@@ -44,7 +44,11 @@ int main (int argc, char **argv){
     {
         clilen = sizeof(cliaddr);
         connfd = accept(sockfd,(struct sockaddr *) &cliaddr, &clilen);
-        // printf("connfd :%d\n",connfd);
+        if (connfd < 0)
+        {
+            printf("Blad akceptacji polaczenia: %s\n", strerror(errno));
+        }
+        
         read(connfd, buff, sizeof(buff));
         printf("%s",buff);
         bzero(buff,sizeof(buff));

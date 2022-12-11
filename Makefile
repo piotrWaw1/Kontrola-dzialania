@@ -1,7 +1,7 @@
-all: server client
+all:
+	gcc client.c -o client
+	gcc server.c -o server
 
-server: server.c
-	gcc -o server server.c
-
-client: client.c
-	gcc -o client client.c
+init:
+	sudo apt-get update
+	sudo apt-get install gcc
