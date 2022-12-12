@@ -100,14 +100,6 @@ int main(int argc, char* argv[]){
                 exit(0);
             }
                 
-            // setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
-
-            // if(inet_pton(AF_INET, ip[n], &servaddr.sin_addr)<=0)
-            // {
-            //     printf("Blad konwersji do adresu IP dla %s\n", argv[1]);
-            //     exit(0);
-            // }
-                
             memset(&servaddr, 0, sizeof(servaddr));
             servaddr.sin_family = AF_INET;
             servaddr.sin_port = htons(PORT);
