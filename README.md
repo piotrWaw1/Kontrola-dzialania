@@ -4,13 +4,13 @@
 
 W folderze w którym znajduje się projekt wpisz polecenie: 
 
-### `make init` - aby zainstalowa wszystkie potrzebne elementy
+### `make init` - aby zainstalować wszystkie potrzebne elementy
 
-### `make` - aby skompilowa pliki
+### `make` - aby skompilować pliki
 
 ## Uruchomienie
 
-Nalerzy wpisz polecenie:
+Należy wpisać polecenie:
 
 ### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje
 
