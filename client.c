@@ -15,7 +15,6 @@
 #define PORT 8080
 #define LISTENQ 1024
 
-int count_line();
 
 int main(int argc, char* argv[]){
     struct sockaddr_in servaddr;
@@ -23,12 +22,12 @@ int main(int argc, char* argv[]){
     int sockfd, connfd;
     int n = 0; // iterator po adresach
     int i = 0;
-    int status;
     char buff[MAXLINE + 1];
     size_t len = 0;
     pid_t childpid;
     srand(time(NULL));
     
+    // sprawdzenie podanych parametrow
     if (argc < 2)
     {
         printf("Urzycie: ./client liczba_hostow\n");
@@ -40,16 +39,19 @@ int main(int argc, char* argv[]){
         printf("Zla liczba hostow\n");
         exit(0);
     }
+
+    // pobranie z argumentu ilosci hostow
     char *c = argv[1];
     int number_of_ip = atoi(c);
 
-    char *ip [number_of_ip]; // lista ip
-    for (int i = 0; i < number_of_ip; i++)
+    // przygotowanie listy adresow hostow na wczytanie z pliku adresow ip
+    char *ip [number_of_ip]; 
+    for (int j = 0; j < number_of_ip; j++)
     {
-        ip[i] = NULL;
+        ip[j] = NULL;
     }
-    // ip[0] = "127.0.0.1"; // Ip maszyny wirtualnej
-    // ip[1] = "192.168.0.125"; // Ip komputera
+
+    // wczytanie z pliku adresow ip
     FILE *f = fopen("ip_list","r");
     if (f == NULL)
     {
@@ -71,11 +73,23 @@ int main(int argc, char* argv[]){
         }
     }
     
+    // sprawdzenie poprawnosci wczytanych adresow ip
+    for (int j = 0; j < number_of_ip; j++)
+    {
+        if(inet_pton(AF_INET, ip[j], &servaddr.sin_addr)<=0)
+        {
+            printf("Blad konwersji do adresu IP dla %s nr: %d\n", ip[j], j);
+            exit(0);
+        }
+    }
+    // przejscie w demona
+
     // printf("Dziala\n");
     while(1){
         
         if((childpid = fork())==0)
         {
+            // ustawienie czasu oczekiwania na odpowiedz (60 s)
             struct timeval tv;
             tv.tv_sec = 60;
             tv.tv_usec = 0;
@@ -88,11 +102,11 @@ int main(int argc, char* argv[]){
                 
             // setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
 
-            if(inet_pton(AF_INET, ip[n], &servaddr.sin_addr)<=0)
-            {
-                printf("Blad konwersji do adresu IP dla %s\n", argv[1]);
-                exit(0);
-            }
+            // if(inet_pton(AF_INET, ip[n], &servaddr.sin_addr)<=0)
+            // {
+            //     printf("Blad konwersji do adresu IP dla %s\n", argv[1]);
+            //     exit(0);
+            // }
                 
             memset(&servaddr, 0, sizeof(servaddr));
             servaddr.sin_family = AF_INET;
@@ -113,7 +127,8 @@ int main(int argc, char* argv[]){
             {
                 setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
                 printf("Klient nr %d dziala \n", n);
-                    
+                
+                //sprawdza czy dzialanie sie wyslalo
                 if (write(sockfd, "2+2 = ", sizeof("2+2 = ")) < sizeof("2+2 = ")) 
                 {
                     printf("Blad wysylania\n");
@@ -124,7 +139,6 @@ int main(int argc, char* argv[]){
                 int byte = recv(sockfd, buff, sizeof(buff), 0);
                 if (byte == -1)
                 {
-                    // wystspil blad, sprawdź errno dla konkretnego bledu
                     if (errno == EAGAIN || errno == EWOULDBLOCK) // EGAIN i EWOULDBLOCK oznaczaja brak danych do odczytu
                     {
                         // uplyna czas oczekiwania
@@ -161,40 +175,18 @@ int main(int argc, char* argv[]){
         }
 
         n++;
-        if(n==number_of_ip)
-        {   int min = 10;
-            int max = 15;
-            int random = 60 * (rand() % (max - min + 1) + min);// serwer zawisza dzialanie w czasie z przedzialu od 10 do 15 minut
-            printf("Sleep: %d\n", random);
+        /*jezeli n jest rowne liczbie hostow program
+          zawiesza dzialanie w przedziale od 10 do 15 min*/
+        if(n == number_of_ip)
+        {   
             n = 0;
+            int min = 10; // minimalny czas oczekiwania w min
+            int max = 15; // maksymalny czas oczekiwania w min
+            int random = 60 * (rand() % (max - min + 1) + min);
+            printf("Sleep: %d\n", random);
             sleep(random);
         }
     } 
     
     return 0;
-}
-
-int count_line()
-{
-    FILE *f = fopen("ip_list","r");
-    
-    if (f == NULL)
-    {
-        printf("Nie mozna otworzyc pliku\n");
-        exit(0);
-    }
-
-    int count_line;
-    char c;
-
-    for (c = getc(f); c != EOF; c = getc(f))
-    {
-        if (c == '\n')
-        {
-            count_line ++;
-        }
-    }
-    fclose(f);
-
-    return count_line;
 }
