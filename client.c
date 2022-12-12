@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
     // sprawdzenie podanych parametrow
     if (argc < 2)
     {
-        printf("Urzycie: ./client liczba_hostow\n");
+        printf("Uzycie: ./client liczba_hostow\n");
         exit(0);
     }
 
@@ -55,7 +55,7 @@ int main(int argc, char* argv[]){
     FILE *f = fopen("ip_list","r");
     if (f == NULL)
     {
-        printf("Nie mozna odczytac pliku\n");
+        printf("Nie mozna odczytac pliku ip_list\n");
         exit(0);
     }
     
