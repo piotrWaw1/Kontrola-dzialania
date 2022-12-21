@@ -10,8 +10,6 @@ W folderze w którym znajduje się projekt wpisz polecenie:
 
 ## Uruchomienie
 
-Należy wpisać polecenie:
-
 ### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje (AN)
 
 ### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika (AK)
