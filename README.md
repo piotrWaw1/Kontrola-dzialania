@@ -6,8 +6,8 @@ W folderze w którym znajduje się projekt wpisz polecenie:
 
 ### `make init` - aby zainstalować wszystkie potrzebne elementy.
 > Zainstaluje:
-> `gcc`
-> `sqlite3`
+> `gcc`, 
+> `sqlite3`, 
 > `libsqlite3-dev`
 
 ### `make` - aby skompilować pliki
