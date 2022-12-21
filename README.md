@@ -10,11 +10,11 @@ W folderze w którym znajduje się projekt wpisz polecenie:
 
 ## Uruchomienie
 
-### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje (AN)
+### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje (`AN`)
 
-### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika (AK)
+### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika (`AK`)
 
-### `./kill_server` - wyłącza aplikację nadzorującą (AN)
+### `./kill_server` - wyłącza aplikację nadzorującą (`AN`)
 
 ## Wymagania
 
@@ -26,4 +26,4 @@ W folderze w którym znajduje się projekt wpisz polecenie:
 
 > *`ip`* zawiera listę adresów ip hostów zczytaną z pliku *ip_list*
 
-> *`history`* zawiera informacje ot tym czy użytkownik i AK pracuje (id_address, date, is_working, is_responding)
+> *`history`* zawiera informacje o tym czy użytkownik i AK pracuje (id_address, date, is_working, is_responding)
