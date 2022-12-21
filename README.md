@@ -26,6 +26,6 @@ Należy wpisać polecenie:
 
 ### `data.db` - zawiera dwie tabele *ip* i *history*
 
-> *ip* zawiera listę adresów ip hostów zczytaną z pliku *ip_list*
+> *`ip`* zawiera listę adresów ip hostów zczytaną z pliku *ip_list*
 
-> *history* zawiera informacje ot tym czy użytkownik i AK pracuje (id_address, date, is_working, is_responding)
+> *`history`* zawiera informacje ot tym czy użytkownik i AK pracuje (id_address, date, is_working, is_responding)
