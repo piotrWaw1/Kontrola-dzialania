@@ -4,17 +4,21 @@
 
 W folderze w którym znajduje się projekt wpisz polecenie: 
 
-### `make init` - aby zainstalować wszystkie potrzebne elementy
+### `make init` - aby zainstalować wszystkie potrzebne elementy.
+> Zainstaluje:
+> `gcc`
+> `sqlite3`
+> `libsqlite3-dev`
 
 ### `make` - aby skompilować pliki
 
 ## Uruchomienie
 
-### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje (`AN`)
+### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje (*AN*)
 
-### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika (`AK`)
+### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika (*AK*)
 
-### `./kill_server` - wyłącza aplikację nadzorującą (`AN`)
+### `./kill_server` - wyłącza aplikację nadzorującą (*AN*)
 
 ## Wymagania
 
