@@ -14,9 +14,9 @@ W folderze w którym znajduje się projekt wpisz polecenie:
 
 ## Uruchomienie
 
-### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa urzytkowników pracuje (*AN*)
+### `./client liczba_hostow` - uruchamia program sprawdzający czy dana grupa użytkowników pracuje (*AN*)
 
-### `./server` - uruchamia program oczekujący na sprawdzenie pracy urzytkownika (*AK*)
+### `./server` - uruchamia program oczekujący na sprawdzenie pracy użytkownika (*AK*)
 
 ### `./kill_server` - wyłącza aplikację nadzorującą (*AN*)
 
