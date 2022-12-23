@@ -18,7 +18,7 @@ W folderze w którym znajduje się projekt wpisz polecenie:
 
 ### `./server` - uruchamia program oczekujący na sprawdzenie pracy użytkownika (*AK*)
 
-### `./kill_server` - wyłącza aplikację nadzorującą (*AN*)
+### `./kill_client` - wyłącza aplikację nadzorującą (*AN*)
 
 ## Wymagania
 
