@@ -42,7 +42,7 @@ int main(int argc, char* argv[]){
     // sprawdzenie podanych parametrow
     if (argc < 2)
     {
-        printf("Uzycie: ./client liczba_hostow\n");
+        printf("Uzycie: ./client liczba_hostow tryb_pracy\n");
         exit(0);
     }
 
@@ -54,7 +54,10 @@ int main(int argc, char* argv[]){
     int number_of_ip = create_db(atoi(argv[1]));
     
     // przejscie w demona
-    daemon(0, 0);
+    if ((argc == 3) && (strcmp(argv[2], "1") == 0))
+    {
+        daemon(0, 0);
+    }
 
     while(1){
         
@@ -100,8 +103,6 @@ int main(int argc, char* argv[]){
                 // printf("Klient nr %d nie dziala.\n", n);
                 syslog(LOG_INFO, "Klient nr %d nie dziala", n);
                 execute_database_query(n, 0, 0, cwd);
-                close(sockfd);
-                exit(0);
             }
 
             /*jezeli polaczenie sie uda sprawdza czy uzytkownik pracuje
@@ -116,8 +117,7 @@ int main(int argc, char* argv[]){
                 {
                     // printf("Blad wysylania\n");
                     syslog(LOG_ERR, "Blad wysylania");
-                    close(sockfd);
-                    exit(0);
+                    
                 }
 
                 int byte = recv(sockfd, buff, sizeof(buff), 0);
@@ -129,16 +129,12 @@ int main(int argc, char* argv[]){
                         // printf("Uplyna czas oczekiwania na dane\n");
                         syslog(LOG_INFO, "Uplyna czas oczekiwania na dane. Klient nr: %d", n);
                         execute_database_query(n, 1, 0, cwd);
-                        close(sockfd);
-                        exit(0);
                     }
                     else
                     {
                         // wystapil inny blad
                         // printf("error podczas odczytu danych: %d\n", errno);
                         syslog(LOG_ERR, "error podczas odczytu danych.");
-                        close(sockfd);
-                        exit(0);
                     }
                 }
                 else
@@ -150,19 +146,17 @@ int main(int argc, char* argv[]){
                         // printf("Poprawna odpowiedz uzytkownik pracuje\n");
                         syslog(LOG_INFO, "Poprawna odpowiedz. Uzytkownik nr %d pracuje", n);
                         execute_database_query(n, 1, 1, cwd);
-                        close(sockfd);
-                        exit(0);
                     }
                     else
                     {
                         // printf("Niepoprawna odpowiedz.\n");
                         syslog(LOG_INFO, "Niepoprawna odpowiedz. Uzytkownik nr %d nie pracuje", n);
                         execute_database_query(n, 1, 0, cwd);
-                        close(sockfd);
-                        exit(0);
                     }
                 }
             }
+            close(sockfd);
+            exit(0);
         }
 
         n++;
